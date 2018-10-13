@@ -1,9 +1,21 @@
+html {
+  position: relative;
+}
+
 h1 {
   text-align: center;
 }
 
+}
 #containerOfOurMap {
   width: 400px;
   height: 400px;
 
+}
+
+rect.btn {
+  stroke:#fff;
+  fill:#fff;
+  fill-opacity:0;
+  stroke-opacity:0;
 }

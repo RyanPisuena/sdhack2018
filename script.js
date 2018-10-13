@@ -37,6 +37,7 @@ var params = {
   'at': '37.7942,-122.4070'
 };
 
+
 // Define a callback function to handle data on success:
 function onResult(data) {
   addPlacesToMap(data.results);
@@ -47,12 +48,26 @@ function onError(data) {
   error = data;
 }
 
+
+
+
+
+
+
 // This function adds markers to the map, indicating each of
 // the located places:
 function addPlacesToMap(result) {
+  /***************************************************/
+  var markerIcon = '<svg width="24" height="24" ' +
+  'xmlns="http://www.w3.org/2000/svg">' +
+  '<g><rect stroke="white" fill="#009655" x="1" y="1" width="22" ' +
+  'height="22" /><rect class="btn" x="0" y="0" width="10" height="10" onclick="populateDiv()" /></g></svg>';
+
+  /***************************************************/
+var icon = new H.map.DomIcon(markerIcon);
   group.addObjects(result.items.map(function (place) {
-  var marker = new H.map.Marker({lat: place.position[0],
-    lng: place.position[1]})
+  var marker = new H.map.DomMarker({lat: place.position[0],
+    lng: place.position[1]}, {icon: icon})
   return marker;
   }));
 }
@@ -60,3 +75,29 @@ function addPlacesToMap(result) {
 // Run a search request with parameters, headers (empty), and
 // callback functions:
 search.request(params, {}, onResult, onError);
+
+
+
+
+
+
+
+/************************************************************/
+function populateDiv() {
+var para = document.createElement("p");
+var node = document.createTextNode("Random Car Repair");
+para.appendChild(node);
+var para2 = document.createElement("p");
+var node2 = document.createTextNode("760-453-5965");
+para2.appenChild(node2);
+
+var populate = document.getElementById("businessInfo");
+populate.appendChild(para);
+populate.appendChild(para2);
+}
+
+
+
+
+
+/************************************************************/
