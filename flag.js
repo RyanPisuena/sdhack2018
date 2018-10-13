@@ -1,30 +1,62 @@
-let app_id = '5FP2Mb897kNdkg0oU5lG';
-let app_code = 'ych9vG1PjklksZ5TFN2HNA';
-let centerLat = 37.7993;
-let centerLng = -122.3977;
-let userInput = '37.7993,-122.3977, 150';
-/*************************************************/
-
-var promptUser = prompt("Hello user, where do you live? Between 37.7990 to 37.7996 and -122.3975 to -122.3940, and radius of 50 to 150");
-  promptUser = userInput;
+/*******************************************************************/
 
 
+Im not sure when you are using api.here.com. Maybe you can use google.maps.Geocoder like i did below. This will set lat and lng equal to your position, if its turns on in your browser of cause.
 
-/*************************************************/
-var targetElement = document.getElementById("containerOfOurMap");
+libary:
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+Js:
+
+var geocoder;
+    geocoder = new google.maps.Geocoder();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+    }
+    //Get the latitude and the longitude;
+    function successFunction(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        codeLatLng(lat, lng)
+    }
+    function errorFunction() {
+        alert("Geocoder failed");
+    }
+    function codeLatLng(lat, lng) {
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({
+            'latLng': latlng
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log(results)
+                if (results[1]) {
+                    alert("Found you! at Latitude: " +lat + " and Longitude: " +lng);
+                } else {
+                    alert("No results found");
+                }
+            } else {
+                alert("Geocoder failed due to: " + status);
+            }
+        });
+    }
 
 
 
-/*************************************************/
+
+/*******************************************************************/
+
+
 
 var platform = new H.service.Platform({
-  'app_id': app_id,
-  'app_code': app_code
+  'app_id': '5FP2Mb897kNdkg0oU5lG',
+  'app_code': 'ych9vG1PjklksZ5TFN2HNA'
 });
+
+var targetElement = document.getElementById("containerOfOurMap");
 
 // Instantiate a map inside the DOM element with id map. The
 // map center is in San Francisco, the zoom level is 10:
-var map = new H.Map(document.getElementById(targetElement),
+var map = new H.Map(document.getElementById('containerOfOurMap'),
   platform.createDefaultLayers().normal.map, {
   center: {lat: 37.7942, lng: -122.4070},
   zoom: 15
@@ -37,6 +69,9 @@ var group = new H.map.Group();
 
 // Create the default UI components:
 var ui = H.ui.UI.createDefault(map, platform.createDefaultLayers());
+
+// Add the group object to the map:
+map.addObject(group);
 
 // Obtain a Search object through which to submit search
 // requests:
@@ -65,6 +100,13 @@ function onError(data) {
   error = data;
 }
 
+
+
+
+
+
+
+
 // This function adds markers to the map, indicating each of
 // the located places:
 function addPlacesToMap(result) {
@@ -82,7 +124,7 @@ var icon = new H.map.DomIcon(markerIcon);
     lng: place.position[1]}, {icon: icon});
     // add 'tap' event listener, that opens info bubble, to the group
 
-/*    if(result) {
+    if(result) {
       // let counter = result.results.items.length;
       // JSON.parse(counter);
     //  for (var i = 0; i < counter; i++) {
@@ -92,14 +134,15 @@ var icon = new H.map.DomIcon(markerIcon);
 
       var bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
         // read custom data
-        content: result.items[0].title + "\n " +
-                 result.items[0].vicinity// line for displaying data
+        content: result.items[i].title + " \n" +
+                            result.items[i].vicinity;
       });
+
+
       // show info bubble
       ui.addBubble(bubble);
     }, false);
-//}
-} */
+}
   return marker;
   }));
 }
@@ -107,7 +150,7 @@ var icon = new H.map.DomIcon(markerIcon);
 // Run a search request with parameters, headers (empty), and
 // callback functions:
 search.request(params, {}, onResult, onError);
-//console.log(platform.getPlacesService());
+console.log(platform.getPlacesService());
 
 
 /****************************** ******************************/
@@ -125,59 +168,3 @@ populate.appendChild(para2);
 }
 
 /************************************************************/
-// Create the parameters for the reverse geocoding request:
-var reverseGeocodingParameters = {
-    prox: userInput,
-    mode: 'retrieveAddresses',
-    maxresults: 12
-  };
-
-// Define a callback function to process the response:
-
-function onFailure(result) {
-  console.log("failure");
-}
-function onSuccess(result) {
-  var locate = result.Response.View[0].Result[0];
-  console.log(result.Response.View[0].Result[0].Location);
-
-  // Create an InfoBubble at the returned location with
-  // the address as its contents:
-  ui.addBubble(new H.ui.InfoBubble({
-    lat: locate.Location.DisplayPosition.Latitude,
-    lng: locate.Location.DisplayPosition.Longitude
-  }, { content: locate.Location.Address.Label }));
-};
-
-// Get an instance of the geocoding service:
-var geocoder = platform.getGeocodingService();
-
-// Call the geocode method with the geocoding parameters,
-// the callback and an error callback function (called if a
-// communication error occurs):
-geocoder.reverseGeocode(reverseGeocodingParameters,onSuccess,onFailure);
-
-
-
-function origin(map){
-  map.setCenter({lat:centerLat, lng: centerLng});
-  map.setZoom(14);
-
-  var centerLocation = new H.map.Marker({lat:centerLat, lng:centerLng});
-  map.addObject(centerLocation);
-
-  centerLocation.addEventListener('tap', function (evt) {
-    // event target is the marker itself, group is a parent event target
-    // for all objects that it contains
-
-    var bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
-      // read custom data
-      content: 'Broken car at ' + '\n'
-    });
-    // show info bubble
-    ui.addBubble(bubble);
-})
-};
-
-origin(map);
-/*************************************************/
