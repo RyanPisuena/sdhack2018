@@ -9,6 +9,12 @@
 *.userosscache
 *.sln.docstates
 
+# Manually Added files
+*/.idea/*
+*/.vscode/*
+*/Training/*
+*/Testing/*
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
