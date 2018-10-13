@@ -14,6 +14,8 @@ var map = new H.Map(document.getElementById('containerOfOurMap'),
   zoom: 15
   });
 
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
 // Create a group object to hold map markers:
 var group = new H.map.Group();
 
@@ -57,6 +59,7 @@ function onError(data) {
 // This function adds markers to the map, indicating each of
 // the located places:
 function addPlacesToMap(result) {
+
   /***************************************************/
   var markerIcon = '<svg width="24" height="24" ' +
   'xmlns="http://www.w3.org/2000/svg">' +
@@ -67,7 +70,18 @@ function addPlacesToMap(result) {
 var icon = new H.map.DomIcon(markerIcon);
   group.addObjects(result.items.map(function (place) {
   var marker = new H.map.DomMarker({lat: place.position[0],
-    lng: place.position[1]}, {icon: icon})
+    lng: place.position[1]}, {icon: icon});
+    // add 'tap' event listener, that opens info bubble, to the group
+    group.addEventListener('tap', function (evt) {
+      // event target is the marker itself, group is a parent event target
+      // for all objects that it contains
+      var bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
+        // read custom data
+        content: evt.target.getData()
+      });
+      // show info bubble
+      ui.addBubble(bubble);
+    }, false);
   return marker;
   }));
 }
@@ -79,9 +93,6 @@ search.request(params, {}, onResult, onError);
 
 
 
-
-
-
 /************************************************************/
 function populateDiv() {
 var para = document.createElement("p");
@@ -89,15 +100,11 @@ var node = document.createTextNode("Random Car Repair");
 para.appendChild(node);
 var para2 = document.createElement("p");
 var node2 = document.createTextNode("760-453-5965");
-para2.appenChild(node2);
+para2.appendChild(node2);
 
 var populate = document.getElementById("businessInfo");
 populate.appendChild(para);
 populate.appendChild(para2);
 }
-
-
-
-
 
 /************************************************************/
