@@ -5,10 +5,12 @@ let centerLng = -122.3977;
 let userInput = '37.7993,-122.3977, 150';
 /*************************************************/
 
-var promptUser = prompt("Hello user, where do you live? Between 37.7990 to 37.7996 and -122.3975 to -122.3940, and radius of 50 to 150");
+var promptUser = prompt("Hello user, where do you live? Between 37.7990 to 37.7996 and -122.3975 to -122.3980, and radius of 50 to 150. In form 'x,y,z'");
+var promptLat = prompt("Enter your lat again");
+var promptLng = prompt("Enter your lat again");
   promptUser = userInput;
-
-
+  centerLat = promptLat;
+  centerLng = promptLng;
 
 /*************************************************/
 var targetElement = document.getElementById("containerOfOurMap");
