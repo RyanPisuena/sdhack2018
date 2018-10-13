@@ -15,6 +15,11 @@ var promptLng = prompt("Enter your lat again");
 /*************************************************/
 var targetElement = document.getElementById("containerOfOurMap");
 
+var map = new H.Map(document.getElementById(targetElement),
+  platform.createDefaultLayers().normal.map, {
+  center: {lat: 37.7942, lng: -122.4070},
+  zoom: 15
+  });
 
 
 /*************************************************/
@@ -26,11 +31,7 @@ var platform = new H.service.Platform({
 
 // Instantiate a map inside the DOM element with id map. The
 // map center is in San Francisco, the zoom level is 10:
-var map = new H.Map(document.getElementById(targetElement),
-  platform.createDefaultLayers().normal.map, {
-  center: {lat: 37.7942, lng: -122.4070},
-  zoom: 15
-  });
+
 
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
