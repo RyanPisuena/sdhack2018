@@ -1,0 +1,6 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "C:\\Users\\camer\\Anaconda3\\envs\\SDHacks2018\\python.exe",
+    "git.ignoreLimitWarning": true,
+    "python.linting.enabled": true
+}

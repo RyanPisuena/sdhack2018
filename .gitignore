@@ -9,6 +9,12 @@
 *.userosscache
 *.sln.docstates
 
+# Manually Added files
+*/.idea/*
+*/.vscode/*
+*/Training/*
+*/Testing/*
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -328,3 +334,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+.vscode/launch.json
+.vscode/settings.json
+*.ppm
