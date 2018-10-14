@@ -4,6 +4,7 @@ let centerLat = 37.7993;
 let centerLng = -122.3977;
 let userInput = '37.7993,-122.3977,150';
 
+
 var platform = new H.service.Platform({
   'app_id': app_id,
   'app_code': app_code
