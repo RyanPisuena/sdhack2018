@@ -100,11 +100,30 @@ class keras_model:
       if letter == '[':
         current_dim -= 1
       elif letter == ']':
-        # Push current dim onto tail of next dim
-        # clear this dim
+        if current_dim == 4:
+          return dim4list
+        elif current_dim == 3:
+          dim4list.append(dim3list)
+          dim3list.clear()
+        elif current_dim == 2:
+          dim3list.append(dim2list)
+          dim2list.clear()
+        else:
+          dim2list.append(dim1list)
+          dim1list.clear()
         current_dim += 1
       else:
-        m = re.search        
+        m = re.search(letter, '\d')
+        if len(m) > 0:
+          if current_dim == 4:
+            dim4list.append(m)
+          elif current_dim == 3:
+            dim3list.append(m)
+          elif current_dim == 2:
+            dim2list.append(m)
+          else:
+            dim1list.append(m)
+          
 
 
 
