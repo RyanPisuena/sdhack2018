@@ -202,7 +202,7 @@ var routingParameters = {
   // The start point of the route:
   'waypoint0': 'geo!37.7993,-122.3977',
   // The end point of the route:
-  'waypoint1': 'geo!37.7990, -122.3970',
+  'waypoint1': 'geo!37.7990,-122.3970',
   // To retrieve the shape of the route we choose the route
   // representation mode 'display'
   'representation': 'display'
