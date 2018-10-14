@@ -15,6 +15,11 @@ div {
   height:auto;
 
 }
+
+.navbar-fixed-top {
+  background-color: #333;
+}
+
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
@@ -44,9 +49,8 @@ div {
   }
 }
 
-}
 #containerOfOurMap {
-justify-content: right;
+  justify-content: right;
 }
 
 rect.btn {
@@ -58,6 +62,15 @@ rect.btn {
 
 #search-input input {
   font-size: 28px;
+}
+
+.ais-search-box {
+  text-align: center;
+  padding: 0px 40px 0px 0px;
+}
+
+.ais-search-box--input {
+  display: inline-block;
 }
 
 .ais-search-box--magnifier {
@@ -152,7 +165,11 @@ rect.btn {
 
 /* PAGINATION */
 #pagination {
-  margin-top: 30px;
+  margin-top: 10px;
+  padding: 0px 40px 0px 0px;
+}
+.ais-pagination {
+  padding: 0px 0px 0px 0px;
 }
 #pagination ul {
   font-size: 0;
@@ -161,6 +178,7 @@ rect.btn {
 }
 #pagination li {
   font-size: 14px;
+  color: #EEE;
   display: inline;
 }
 #pagination a {
