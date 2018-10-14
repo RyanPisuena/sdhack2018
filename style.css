@@ -79,7 +79,7 @@ rect.btn {
 }
 .hit {
   font-size: 0;
-  padding: 15px 0;
+  padding: 10px 0px 0px 0px;
   border-bottom: 1px solid #eee;
 }
 .hit-name {
@@ -152,7 +152,7 @@ rect.btn {
 
 /* PAGINATION */
 #pagination {
-  margin-top: 60px;
+  margin-top: 30px;
 }
 #pagination ul {
   font-size: 0;
