@@ -1,6 +1,7 @@
 html {
-  position:relative;
 }
+
+body { padding-top: 20px; }
 
 h1 {
   text-align: center;
