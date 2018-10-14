@@ -43,13 +43,21 @@
   <div class="column" id="containerOfOurMap">
   </div>
 
+  <div class ="jumbotron" style="justify-content: right, margin: auto">
+    <h4> Wrecked car? We'll take a look. </h4>
+    <form method="post" enctype="multipart/form-data">
+      <div style="justify-content: right">
+        <input type="file" id="car_pic" name="car_pic"
+              accept=".jpg, .jpeg"> <button>Submit</button>
+      </div>
+   </form>
 </body>
 
 <script type="text/html" id="hit-template">
   <div class="hit">
     <div class="hit-content">
       <h3 class="hit-price">{{averageRating}}</h3>
-      <h2 class="hit-name">{{{_highlightResult.title.value}}}</h2>
+      <h2 class="hit-name"><a href={{{view}}}>{{{_highlightResult.title.value}}}</a></h2>
       <p class="hit-description">{{{_highlightResult.vicinity.value}}}<br>Distance from you: {{{distance}}} miles</p>
       <hr>
     </div>
