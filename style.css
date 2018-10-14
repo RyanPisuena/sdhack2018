@@ -16,6 +16,11 @@ div {
 
 }
 
+.button-wrapper {
+  text-align: right;
+  padding: 0px 10px 0px 0px;
+}
+
 .navbar-fixed-top {
   background-color: #333;
 }
@@ -66,7 +71,7 @@ rect.btn {
 
 .ais-search-box {
   text-align: center;
-  padding: 0px 40px 0px 0px;
+  padding: 0px 80px 0px 0px;
 }
 
 .ais-search-box--input {
@@ -175,7 +180,7 @@ rect.btn {
 /* PAGINATION */
 #pagination {
   margin-top: 10px;
-  padding: 0px 40px 0px 0px;
+  padding: 0px 80px 0px 0px;
 }
 .ais-pagination {
   padding: 0px 0px 0px 0px;

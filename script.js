@@ -202,7 +202,19 @@ var routingParameters = {
   // The start point of the route:
   'waypoint0': 'geo!37.7993,-122.3977',
   // The end point of the route:
-  'waypoint1': 'geo!37.7990,-122.3970',
+  'waypoint1': 'geo!37.793732,-122.404182',
+  // To retrieve the shape of the route we choose the route
+  // representation mode 'display'
+  'representation': 'display'
+};
+
+var homeParameters = {
+  // The routing mode:
+  'mode': 'fastest;car',
+  // The start point of the route:
+  'waypoint0': 'geo!37.793732,-122.404182',
+  // The end point of the route:
+  'waypoint1': 'geo!37.793740,-122.404210',
   // To retrieve the shape of the route we choose the route
   // representation mode 'display'
   'representation': 'display'
@@ -233,7 +245,7 @@ var onResult = function(result) {
 
   // Retrieve the mapped positions of the requested waypoints:
   startPoint = route.waypoint[0].mappedPosition;
-  endPoint = route.waypoint[1].mappedPosition;
+  //endPoint = route.waypoint[1].mappedPosition;
 
   // Create a polyline to display the route:
   var routeLine = new H.map.Polyline(linestring, {
@@ -246,14 +258,9 @@ var onResult = function(result) {
     lng: startPoint.longitude
   });
 
-  // Create a marker for the end point:
-  var endMarker = new H.map.Marker({
-    lat: endPoint.latitude,
-    lng: endPoint.longitude
-  });
 
   // Add the route polyline and the two markers to the map:
-  map.addObjects([routeLine, startMarker, endMarker]);
+  map.addObjects([routeLine, startMarker]);
 
   // Set the map's viewport to make the whole route visible:
   map.setViewBounds(routeLine.getBounds());
@@ -266,15 +273,27 @@ var router = platform.getRoutingService();
 // Call calculateRoute() with the routing parameters,
 // the callback and an error callback function (called if a
 // communication error occurs):
-router.calculateRoute(routingParameters, onResult,
-  function(error) {
-    alert(error.message);
-  });
+
+
+var routingBlue = function() {
+  router.calculateRoute(routingParameters, onResult,
+    function(error) {
+      alert(error.message);
+    });
+}
+
+var routingHome = function() {
+  router.calculateRoute(homeParameters, onResult,
+    function(error) {
+      alert(error.message);
+    });
+}
 
 origin(map);
 //map.addLayer(centroids);
 map.addLayer(defaultLayers.incidents);
 map.addLayer(boundaries);
+
 
 /////////////////////////////////////////////////////////////
 
