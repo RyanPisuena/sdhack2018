@@ -214,7 +214,12 @@ function loadData(array) {
         'title',
         'vicinity'
       ],
-      customRanking: ['desc(averageRating)']
+      // sorts search results by descending rating,
+      // then by alphabetical order
+      customRanking: [
+        'desc(averageRating)',
+        'asc(title)'
+      ]
     },
     function(err, content)
     {
@@ -237,7 +242,12 @@ function loadData(array) {
         'title',
         'vicinity'
       ],
-      customRanking: ['asc(distance)']
+      // sorts search results by ascending distance,
+      // then by alphabetical order
+      customRanking: [
+        'asc(distance)',
+        'asc(title)'
+      ]
     },
     function(err, content)
     {

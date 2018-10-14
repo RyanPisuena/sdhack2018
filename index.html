@@ -41,7 +41,28 @@
 
 </div>
 <div id="businessInfo"> </div>
+
+<header>
+  <div>
+     <input id="search-input" placeholder="Search for services">
+  </div>
+</header>
+<div id="sort-by"></div>
+<div id="hits"></div>
+<div id="pagination"></div>
 </body>
 
+<script type="text/html" id="hit-template">
+  <div class="hit">
+    <div class="hit-content">
+      <h3 class="hit-price">{{averageRating}}</h3>
+      <h2 class="hit-name">{{{_highlightResult.title.value}}}</h2>
+      <p class="hit-description">{{{_highlightResult.vicinity.value}}}<br>Distance from you: {{{distance}}} m</p>
+      <hr>
+    </div>
+  </div>
+</script>
+
 <script src="script.js"></script>
+<script src="search.js"></script>
 </html>
