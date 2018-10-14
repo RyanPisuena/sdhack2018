@@ -11,7 +11,7 @@ def main():
   jpgtoppm(TRAIN_DIR)
   kmodel = keras_model()
   broken = data.imread(TRAIN_DIR + "\\Broken2.ppm")
-  car = data.imread("Fixed.ppm")
+  car = data.imread(TRAIN_DIR + "\\Fixed.ppm")
   print(kmodel.predict([broken]))
   print(kmodel.predict([car]))
 
