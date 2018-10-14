@@ -56,7 +56,7 @@
 <script type="text/html" id="hit-template">
     <div class="hit-content">
       <h3 class="hit-price">{{averageRating}}</h3>
-      <h2 class="hit-name"><a href={{{view}}}>{{{_highlightResult.title.value}}}</a></h2>
+      <h2 class="hit-name"><input type="checkbox" name="selectHit" value="select"> <a href={{{view}}}>{{{_highlightResult.title.value}}}</a></h2>
       <p class="hit-description">{{{_highlightResult.vicinity.value}}}<br>Distance from you: {{{distance}}} miles</p>
       <hr>
     </div>
