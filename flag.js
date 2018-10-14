@@ -2,7 +2,7 @@ let app_id = '5FP2Mb897kNdkg0oU5lG';
 let app_code = 'ych9vG1PjklksZ5TFN2HNA';
 let centerLat = 37.7993;
 let centerLng = -122.3977;
-let userInput = '37.7993,-122.3977,150';
+let userInput = '52.5309,13.3847,150';
 
 var platform = new H.service.Platform({
   'app_id': app_id,
@@ -11,6 +11,7 @@ var platform = new H.service.Platform({
 
 var targetElement = document.getElementById("containerOfOurMap");
 
+/**************
 // Instantiate a map inside the DOM element with id map. The
 // map center is in San Francisco, the zoom level is 10:
 var map = new H.Map(document.getElementById('containerOfOurMap'),
@@ -49,12 +50,21 @@ function onResult(data) {
   searchResult=data;
   result=data;
   addPlacesToMap(data.results);
+  console.log(data.results);
 }
 
 // Define a callback function to handle errors:
 function onError(data) {
   error = data;
 }
+
+
+
+
+
+
+
+
 
 // This function adds markers to the map, indicating each of
 // the located places:
@@ -98,33 +108,43 @@ var icon = new H.map.DomIcon(markerIcon);
 // Run a search request with parameters, headers (empty), and
 // callback functions:
 search.request(params, {}, onResult, onError);
+console.log(platform.getPlacesService());
 
-//////////////////////////////////////////////////////////////////
 
+/****************************** ******************************/
+function populateDiv() {
+var para = document.createElement("p");
+var node = document.createTextNode("Random Car Repair");
+para.appendChild(node);
+var para2 = document.createElement("p");
+var node2 = document.createTextNode("760-453-5965");
+para2.appendChild(node2);
+
+var populate = document.getElementById("businessInfo");
+populate.appendChild(para);
+populate.appendChild(para2);
+}
+
+/************************************************************/
 // Create the parameters for the reverse geocoding request:
 var reverseGeocodingParameters = {
-    prox: userInput,
+    prox: '52.5309,13.3847,150',
     mode: 'retrieveAddresses',
     maxresults: 12
   };
 
 // Define a callback function to process the response:
 function onSuccess(result) {
-  var locatio = result.Response.View[0].Result[0];
-  console.log(result.Response.View[0].Result[0]);
-  console.log("success");
+  var location = result.Response.View[0].Result[0];
 
   // Create an InfoBubble at the returned location with
   // the address as its contents:
   ui.addBubble(new H.ui.InfoBubble({
-    lat: locatio.Location.DisplayPosition.Latitude,
-    lng: locatio.Location.DisplayPosition.Longitude
-   }, { content: locatio.Location.Address.Label }));
+    lat: location.Location.DisplayPosition.Latitude,
+    lng: location.Location.DisplayPosition.Longitude
+   }, { content: location.Location.Address.Label }));
 };
 
-function onFailure(result) {
-  console.log("Failure");
-}
 // Get an instance of the geocoding service:
 var geocoder = platform.getGeocodingService();
 
@@ -134,9 +154,9 @@ var geocoder = platform.getGeocodingService();
 geocoder.reverseGeocode(
   reverseGeocodingParameters,
   onSuccess,
-  onFailure);
+  function(e) { alert(e); });
 
-/////////////////////////////////////////////////////////////
+
 
 function origin(map){
   map.setCenter({lat:centerLat, lng: centerLng});
@@ -158,35 +178,4 @@ function origin(map){
 })
 };
 
-var service = platform.getPlatformDataService();
-
-style = new mapsjs.map.SpatialStyle();
-// create tile provider and layer that displays postcode boundaries
-var boundariesProvider = new mapsjs.service.extension.platformData.TileProvider(service,
-{
-  layer: 'PSTLCB_GEN', level: 12
-}, {
-  resultType: mapsjs.service.extension.platformData.TileProvider.ResultType.POLYLINE,
-  styleCallback: function(data) {return style}
-});
-var boundaries = new mapsjs.map.layer.TileLayer(boundariesProvider);
-
-// create tile provider and layer that displays postcode area centroids
-var centroidsProvider = new mapsjs.service.extension.platformData.TileProvider(service,
-{
-  layer: 'PSTLCB_MP', level: 12
-}, {
-  resultType: mapsjs.service.extension.platformData.TileProvider.ResultType.MARKER
-});
-
-// add events listener, that outputs data provided by the Platform Data Extenstion and
-// associated with the H.map.Marker
-centroidsProvider.addEventListener('tap', function(ev) {
-  var markerData = ev.target.getData();
-  console.log(markerData.getCell('POSTAL_CODE'), markerData.getCell('ISO_COUNTRY_CODE'))
-});
-
 origin(map);
-map.addLayer(centroids);
-map.addLayer(defaultLayers.incidents);
-map.addLayer(boundaries);
