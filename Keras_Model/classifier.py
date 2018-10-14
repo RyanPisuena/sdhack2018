@@ -62,6 +62,8 @@ class keras_model:
   def predict(self, input):
     return self.model.predict_classes(input)
 
+###################Private Functions############################################
+
   # Set up model
   def __SetUpModel(self):
     self.model.add(Conv2D(32, 3, 3, activation='relu', input_shape=(1, 28, 28),
