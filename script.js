@@ -30,6 +30,9 @@ var group = new H.map.Group();
 // Create the default UI components:
 var ui = H.ui.UI.createDefault(map, platform.createDefaultLayers());
 
+// Change unit system to imperial
+ui.setUnitSystem(H.ui.UnitSystem.IMPERIAL);
+
 // Add the group object to the map:
 map.addObject(group);
 
@@ -276,6 +279,11 @@ map.addLayer(boundaries);
 /////////////////////////////////////////////////////////////
 
 function loadData(array) {
+  for (var item in array) {
+    meters = array[item]['distance'];
+    array[item]['distance'] = Math.round(meters*0.000621371*100)/100;
+  }
+
   // retrieve Algolia data index
   var client = algoliasearch('W1MOOQ9FQ0', '432c1c13ad28182cfcf79629cfbfe942');
   var index = client.initIndex('shops_index');
