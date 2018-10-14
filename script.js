@@ -49,6 +49,8 @@ function onResult(data) {
   searchResult=data;
   result=data;
   addPlacesToMap(data.results);
+  console.log(data.results);
+  loadData(data.results.items);
 }
 
 // Define a callback function to handle errors:
@@ -190,3 +192,56 @@ origin(map);
 map.addLayer(centroids);
 map.addLayer(defaultLayers.incidents);
 map.addLayer(boundaries);
+
+/////////////////////////////////////////////////////////////
+
+function loadData(array) {
+  // retrieve Algolia data index
+  var client = algoliasearch('W1MOOQ9FQ0', '432c1c13ad28182cfcf79629cfbfe942');
+  var index = client.initIndex('shops_index');
+
+  // replace existing data
+  index.clearIndex(function(err, content) {
+    if (err) throw err;
+  });
+  const records = array;
+  index.addObjects(records);
+
+  // set sort settings for main index
+  index.setSettings(
+    {
+      searchableAttributes: [
+        'title',
+        'vicinity'
+      ],
+      customRanking: ['desc(averageRating)']
+    },
+    function(err, content)
+    {
+      if (err) throw err;
+    }
+  );
+
+  // create and set sort settings for replica
+  index.setSettings(
+    {
+      replicas: [
+        'shops_index_by_distance'
+      ]
+    }
+  )
+  var replica = client.initIndex('shops_index_by_distance');
+  replica.setSettings(
+    {
+      searchableAttributes: [
+        'title',
+        'vicinity'
+      ],
+      customRanking: ['asc(distance)']
+    },
+    function(err, content)
+    {
+      if (err) throw err;
+    }
+  )
+}
