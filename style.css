@@ -116,6 +116,11 @@ rect.btn {
   margin-left: 3%;
   vertical-align: top;
 }
+
+.hit-content.select {
+  background-color: red;
+}
+
 .hit-stars {
   font-size: 17px;
   margin: 4px 0;
@@ -133,6 +138,10 @@ rect.btn {
 .hit-content .hit-price, .hit-content .hit-name {
   font-weight: normal;
   margin-top: 0;
+}
+
+.hit-price {
+  font-size: 20;
 }
 
 .hit-content em {
@@ -153,9 +162,9 @@ rect.btn {
   margin: 5px 0 2px 0;
 }
 
-  .hit-category-breadcrumb em {
-    color: inherit;
-  }
+.hit-category-breadcrumb em {
+  color: inherit;
+}
 
 .hit-content .hit-description {
   color: #868686;
