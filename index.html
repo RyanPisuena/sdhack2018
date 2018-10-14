@@ -28,7 +28,7 @@
 
 <body>
 
-  <nav class="navbar navbar-default navbar-fixed-top"><a class="navbar-brand" href="reload()">SD Hacks 2018</a></nav>
+  <nav class="navbar navbar-default navbar-fixed-top"><a class="navbar-brand" href="reload()">Motopanion</a></nav>
   <div class="column">
     <header>
       <div>
@@ -43,10 +43,17 @@
   <div class="column" id="containerOfOurMap">
   </div>
 
+  <div class ="jumbotron" style="justify-content: right, margin: auto">
+    <h4> Wrecked car? We'll take a look. </h4>
+    <form method="post" enctype="multipart/form-data">
+      <div style="justify-content: right">
+        <input type="file" id="car_pic" name="car_pic"
+              accept=".jpg, .jpeg"> <button>Submit</button>
+      </div>
+   </form>
 </body>
 
 <script type="text/html" id="hit-template">
-  <div class="hit">
     <div class="hit-content">
       <h3 class="hit-price">{{averageRating}}</h3>
       <h2 class="hit-name">{{{_highlightResult.title.value}}}</h2>
