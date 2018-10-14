@@ -5,7 +5,7 @@ var search = instantsearch({
   indexName: 'shops_index',
   urlSync: true,
   searchParameters: {
-    hitsPerPage: 10
+    hitsPerPage: 5
   }
 });
 
@@ -21,8 +21,8 @@ search.addWidget(
   instantsearch.widgets.sortBySelector({
     container: '#sort-by',
     indices: [
-      {name: 'shops_index', label: 'Sort: by rating'},
-      {name: 'shops_index_by_distance', label: 'Sort: by distance'}
+      {name: 'shops_index', label: 'Sort by: rating'},
+      {name: 'shops_index_by_distance', label: 'Sort by: distance'}
     ]
   })
 );

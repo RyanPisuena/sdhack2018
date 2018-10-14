@@ -29,7 +29,7 @@ div {
 .column {
   float: left;
   width: 50%;
-  padding: 10px;
+  padding: 50px 10px 10px 10px;
 }
 
 .row:after {
@@ -84,6 +84,7 @@ rect.btn {
 }
 .hit-name {
   margin: 0;
+  font-size: 16px;
 }
 .hit-image {
   display: inline-block;
@@ -128,7 +129,7 @@ rect.btn {
 }
 
 .hit-content p {
-  font-size: 13px;
+  font-size: 9px;
 }
 
 .hit-description em {
@@ -212,6 +213,7 @@ rect.btn {
   background: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  padding: 20px 0px 0px 0px;
 }
 
 #sort-by:after {
