@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
-    type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
-    type="text/javascript" charset="utf-8"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js"
-    type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript" charset="UTF-8"
-    src="http://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
-  <link rel="stylesheet" type="text/css"
-    href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="UTF-8" src="http://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- Algolia and InstantSearch -->
-<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+  <!-- Algolia and InstantSearch -->
+  <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="style.css">
- </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
 
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-<a class="navbar-brand" href="reload()">SD Hacks 2018</a>
+  <nav class="navbar navbar-default navbar-fixed-top"><a class="navbar-brand" href="reload()">SD Hacks 2018</a></nav>
+  <div class="column">
+    <header>
+      <div>
+        <input id="search-input" placeholder="Search for services">
+      </div>
+    </header>
+    <div id="sort-by"></div>
+    <div id="hits"></div>
+    <div id="pagination"></div>
   </div>
-</nav>
-<div id="containerOfOurMap">
 
-</div>
-<div id="businessInfo"> </div>
-
-<header>
-  <div>
-     <input id="search-input" placeholder="Search for services">
+  <div class="column" id="containerOfOurMap">
   </div>
-</header>
-<div id="sort-by"></div>
-<div id="hits"></div>
-<div id="pagination"></div>
+
 </body>
 
 <script type="text/html" id="hit-template">
@@ -65,4 +58,5 @@
 
 <script src="script.js"></script>
 <script src="search.js"></script>
+
 </html>
