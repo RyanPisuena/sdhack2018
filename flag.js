@@ -1,5 +1,5 @@
-let app_id = '5FP2Mb897kNdkg0oU5lG';
-let app_code = 'ych9vG1PjklksZ5TFN2HNA';
+//let app_id = 'XXXXXXXXXXXXX';
+//let app_code = 'XXXXXXXXXXXXXX';
 let centerLat = 37.7993;
 let centerLng = -122.3977;
 let userInput = '52.5309,13.3847,150';
